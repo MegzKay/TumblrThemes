@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {block:Description} <meta name="description" content="{MetaDescription}" /> {/block:Description}
+    <title>{block:TagPage}{Tag} - {/block:TagPage} {block:SearchPage}{lang:Search results for SearchQuery} - {/block:SearchPage}{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}</title>
+    <link rel="shortcut icon" href="{Favicon}" />
+    <link rel="alternate" type="application/rss+xml" href="{RSS}" />
+    
+    <!--images-->
+    <meta name="image:Background" content=""/>
+
+    <!--colors-->
+    <meta name="color:Background" content="#000" />
+    <meta name="color:Link" content="#311d31" />
+    <meta name="color:Link Hover" content="#fff" />
+    
+    <meta name="color:Title" content="#000" />
+    
+    <meta name="color:Navigation" content="#e5e5e5" />
+    <meta name="color:Navigation Text" content="#414141" />
+    <meta name="color:Navigation Hover" content="#1d1d1d" />
+    <meta name="color:Navigation Text Hover" content="#e700e7" />
+    
+    <meta name="color:Note Bar" content="#fff" />
+    <meta name="color:Note Text" content="#999" />
+    <meta name="color:Note Text Hover" content="#000" />
+    
+    <meta name="color:Post" content="#555" />
+    <meta name="color:Text Color" content="#d1d1d1" />
+    <meta name="font:Font" content=" " />
+
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background:{color:background} url('{image:Background}');
+        }
+        header, section, footer, aside, nav, article, hgroup{
+	        display: block;
+        }
+        hgroup{
+            color:{color:Header};
+            font-family: {font:Font};
+        }
+        p{
+            color:{color:Text Color}; 
+            font-family: {font:Font};
+        }
+        ul{
+            list-style-type: none;
+        }
+        a {
+            text-decoration: none;
+            font-family: {font:Font};
+        }
+        #big_container{
+            width:900px;
+            margin-left:50px;
+            font-family: {font:Font};
+            margin:0 auto;
+        }
+        aside{
+            position:fixed;
+            float: left;
+            margin-left:100px;
+        }
+        #sidebar{
+            padding:10px;
+            width:200px;
+            margin-top:75px;
+            font-family: {font:Font};
+            color:{color:Text Color};
+            background-color:{color:Post};
+        }
+        nav{
+            padding:5px 0px;
+            clear:both;
+        }
+        #navlist{
+            display:inline;
+            font-size:12px;
+        }
+        #navlist li{
+            margin:7px 0;
+        }
+        #navlist a{
+            color:{color:Navigation Text};
+            transition: color 1s;
+        }
+        #navlist a:visted{
+            color:{color:Navigation Text};
+        }
+        #navlist a:hover{
+            color:{color:Navigation Text Hover};
+        }
+        #transition{
+            margin:3px 0;
+            padding-left:2px;
+            background-color:{color:Navigation};
+            width:100px;
+            transition: background-color 1s, width 1s;
+        }
+        #transition:hover{
+            background-color:{color:Navigation Hover};
+            width:185px;
+        }
+        #des_block{
+            width:auto;
+            margin-bottom:5px;
+        }
+        #avatar{
+            float:left;
+            padding-bottom:10px;
+            width:48px;
+            margin-top:5px;
+        }
+        #description {
+            width:140px;
+            float:right;
+            text-align:left;
+            padding-bottom:5px;
+            margin-left:5px;
+        }
+        #title{
+            font-size:16px;
+        }
+        h1 a:link{
+            color:{color:Title};
+        }
+        h1 a:visited{
+            color:{color:Title}; 
+        }
+        h1 a:hover{
+            color:{color:Title}; 
+        }
+        #description p{
+            font-size:12px;
+            color:black;
+        }
+        #nex_pre{
+            text-align:center;
+            
+            padding: 5px 0px;
+            text-align:left;
+            font-weight:bold;
+            font-size:12px;
+        }
+        #nex_pre li { 
+            display: inline; 
+            padding:0 4px;
+            margin: 0 4px;
+            color:{color:Navigation Text};
+            background-color:{color:Navigation};
+            transition: background-color 1s, color 1s;
+        }
+        #nex_pre li:hover{
+            background-color:{color:Navigation Hover};
+            color:{color:Navigation Text Hover};
+        }
+        #nex_pre li a {
+            color:{color:Navigation Text};
+        }
+        #nex_pre li a:visited {
+            color:{color:Navigation Text};
+        }
+        #nex_pre li a:hover{
+            color:{color:Navigation Text Hover};
+        }
+        .pages{
+            text-align:center;
+        }
+        #theme_by{
+           color:#000; 
+           margin:0 auto;
+           font-size:12px;
+           text-align: center;
+           display: block;
+           border-top:2px solid #757575;
+           margin-top:10px;
+           padding-top:3px;
+        }
+
+
+
+
+        article{
+            float:right;
+            width:520px;
+            margin-top:30px;
+        }
+        article a:link{
+            color:{color:Link};
+        }
+        article a:visited{
+            color:{color:Link}; 
+        }
+        article a:hover{
+            color:{color:Link Hover}; 
+        }
+        article h2{
+            padding-bottom:5px;
+        }
+        article h2 a:link{
+            color:{color:Text Color};
+        }
+        article h2 a:visited{
+            color:{color:Text Color};
+        }
+        article h2 a:hover{
+            color:{color:Text Color};
+        }
+        #content{
+            margin-bottom:30px;
+        }
+        section{
+            width:500px;
+            padding: 10px;
+            font-family: {font:Font};
+            color:{color:Text Color};
+            background-color:{color:Post};
+        }
+            section blockquote {
+              border-left: solid 2px gray;
+              margin-left:20px;
+              padding-left: 5px;
+              font-family: {font:Font};
+              color:{color:Text Color};
+              font-style:italic;
+            }
+            .text{
+
+            }
+            .text ul{
+                margin-left:20px;
+                list-style-type: disc;
+
+            }
+            .text ol{
+                margin-left:20px;
+            }
+            .picture{
+        
+            }
+            .quote{
+
+                
+            }
+                .quote h2{
+                    text-align:left;
+                }
+                .quote p{
+                    margin-left:35px;
+                }
+            .link {
+
+            }
+                .link p{
+                    margin-left:30px;
+                    font-style: italic;
+                    padding: 0px 0px 5px;
+                }
+                .link h2 {
+                    text-align:left;
+                    
+                }
+                .link a{
+                   font-weight:bold;
+                   text-decoration:underline;
+                }
+            .chatsection{
+                padding-bottom:20px;
+            }
+            .chatsection h2{
+                padding-bottom:10px;
+            }
+                .chat ul {
+                    list-style-type: none;
+                }
+                .chat li {
+                    border-radius: 0.2em;
+                    width: 200px;
+                    padding:5px;
+                }
+                .chat .odd {
+                    border: 1px solid rgba(1,1,1,0.2);
+                    color:#444;
+                    margin-left:10px;
+                    background: #fff;
+                    box-shadow: -1px -1px 2px #444 inset;
+                }
+                .chat .even {
+                    border: 1px solid #000;
+                    color:#fff;
+                    margin-left:280px;
+                    background: #444;
+                    box-shadow: -1px -1px 2px rgba(1,1,1,0.5) inset;
+                }
+            .vid{
+
+            }
+            .aud{
+
+            }
+                .aud p{
+                    padding:3px 10px;
+                }
+                .audcontent{
+                    width:207px;
+                    margin-left:144px;
+                    margin-top:15px;
+                    margin-bottom:10px;
+                    border: 2px solid black;
+                    padding:5px;
+                    background:white;
+                }
+            .answer{
+
+            }
+            .answer a:link{
+                color:#000;
+            }
+            .answer a:visited{
+                color:#000;
+            }
+            .answer a:hover{
+                color:#000;
+            }
+            .question{
+                background-color:#fff;
+                width:480px;
+                padding:10px;
+                height:auto;
+                color:#000;
+            }
+            .qaimage{
+                float:left;
+                padding-right:5px;
+            }
+            .question h4{
+                margin-bottom:10px;
+            }
+            .question p{
+                background-color:#DDDDDD;
+                padding:3px;
+            }
+        #notes_tags{
+            width:506px;
+            background-color:{color:Note Bar};
+            padding:0px 5px;
+            border:2px solid #999;
+            color:{color:Note Text};
+            display:block;
+            font-size:15px;
+            font-family: {font:Font};
+        }
+        #notes_tags li a{
+            color:{color:Note Text};
+        }
+        #notes_tags li a:visited{
+            color:{color:Note Text};
+        }
+        #notes_tags li a:hover{
+            color:{color:Note Text Hover};
+        }
+        #notes_tags li{
+            display:inline;
+        }
+            .date{ 
+                float:left;
+            }
+            .tags{
+                font-size:12px;
+                
+            }
+            .content_source{
+                font-size:12px;
+            }
+            .note_count{
+                font-size:12px;
+            }
+            .submission{
+                font-size:12px;
+                font-style:italic;
+            }
+            .like_and_reblog_buttons li{
+                float:right;
+                padding:2px 5px;
+            }
+        #notes_tags a{
+            padding:0 2px;
+        }
+            ol.notes {
+                padding: 0px;
+                margin: 15px 0px;
+                list-style-type: none;
+                font-weight: normal;
+                font-size:10px;
+                font-family: {font:Font};
+            }
+
+            ol.notes li.note {
+                
+            }
+
+            ol.notes li.note img.avatar {
+                vertical-align: -4px;
+                margin-right: 10px;
+                width: 20px;
+                height: 20px;
+            }
+
+            ol.notes li.note span.action {
+ 
+            }
+
+            ol.notes li.note .answer_content {
+                font-weight:bold;
+            }
+
+            ol.notes li.note blockquote {
+                border-color: #eee;
+                padding: 4px 10px;
+                margin: 10px 0px 0px 25px;
+            }
+
+            ol.notes li.note blockquote a {
+                text-decoration:none;
+            }
+        {CustomCSS}
+    </style>
+</head>
+<body>
+    
+    <div id="big_container">
+        <aside>
+            <div id="sidebar">
+                
+
+        	  	
+        		
+        		<div id="des_block">
+        		    <img id="avatar" src="{PortraitURL-48}">
+            	    <div id="description">
+                            {block:Description}
+                                <h1 id="title"><a href="{BlogURL}">{TITLE}</a></h1>
+            			        <p>{Description}<p>
+            		        {/block:Description}
+    		        </div>
+    		        
+    		  </div>
+    		  
+    		  <nav>
+                    <ul id="navlist">
+                        {block:HasPages}
+                        {block:Pages}
+                            <div id="transition">
+                            <li> <a href="{URL}">{Label}</a></li>
+                            </div>
+                        {/block:Pages}
+                        {/block:HasPages}
+                        {block:AskEnabled}
+                            <div id="transition">
+                            <li><a href="/ask">{AskLabel}</a></li>
+                            </div>
+                        {/block:AskEnabled}
+                        {block:SubmissionsEnabled}
+                            <div id="transition">
+                            <li> <a href="/submit">{SubmitLabel}</a></li>
+                            </div>
+                        {/block:SubmissionsEnabled}
+                    </ul>	
+        		</nav> 
+                
+        		<ul id="nex_pre">
+            		<div class ="pages">
+            		
+            		    {block:JumpPagination length="5"}
+                            {block:CurrentPage}
+                                <li><span class="current_page">{PageNumber}</span></li>
+                            {/block:CurrentPage}
+    
+                            {block:JumpPage}
+                                <li><a class="jump_page" href="{URL}">{PageNumber}</a></li>
+                            {/block:JumpPage}
+                        {/block:JumpPagination}
+                    </div>
+                </ul>
+                <a id="theme_by" href="http://designblogworld.tumblr.com/">Theme by: DesignBlogWorld</a>
+    		</div>
+        </aside>
+        <article>
+             {block:Posts}
+                <div id="content">
+                    
+                    {block:Text}
+                    <section class="text">
+                    {block:Title}
+                        <h2><a href="{Permalink}">{Title}</a></h2>
+                    {/block:Title}<p>{Body}</p>
+                    </section>
+                    {/block:Text}
+                    
+                    
+                    {block:Photo}
+                    <section class="picture">
+                            <a href="{Permalink}">
+                            <img src="{PhotoURL-500}" alt="{PhotoAlt}" width="100%"></a>
+                            {block:Caption}
+                                {Caption}
+                            {/block:Caption}
+                    </section>
+                    {/block:Photo}
+                    
+                    
+                            
+                    {block:Panorama}
+                    <section class="picture"> 
+                            {LinkOpenTag}
+                                <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
+                            {LinkCloseTag}
+                            {block:Caption}
+                                {Caption}
+                            {/block:Caption}
+                    </section>
+                    {/block:Panorama}
+                    
+                    
+                                
+                    {block:Photoset}
+                    <section class="picture"> 
+                        <div id="post">
+                            {Photoset-500}
+                        </div>
+                        {block:Caption}
+                            {Caption}
+                        {/block:Caption}
+                    </section>
+                    {/block:Photoset}
+                    
+                    
+                             
+                    {block:Quote}
+                    <section class="quote"> 
+                        <h2>"{Quote}"</h2>
+                        {block:Source}<p>- {Source}</p>{/block:Source}
+                    </section>
+                    {/block:Quote}
+                    
+                 
+                    
+                    {block:Link}
+                    <section class="link">
+                    <a href="{URL}" {Target}><h2>{Name}</h2></a>
+                        {block:Description}<p>{Description}</p>{/block:Description}
+                    </section>
+                    {/block:Link}
+                    
+                
+                    
+                    {block:Chat}
+                    <section class="chatsection">
+                        <h2>{Title}</h2>
+                        <div class="chat">
+                          <ul>
+                                {block:Lines}
+                                    <li class="{Alt}">
+                                            {block:Label}
+                                                {Label}
+                                            {/block:Label}{Line}
+                                    </li>
+                                {/block:Lines}
+                            </ul>
+                        </div>
+                    </section>
+                    {/block:Chat}
+
+                    
+                    
+                        
+                    {block:Video}
+                    <section class="vid">  
+                         {Video-500}
+                            {block:Caption}
+                                {Caption}
+                            {/block:Caption}
+                    </section>
+                    {/block:Video}
+                    
+                    
+                                 
+                    {block:Audio}
+                    <section class="aud"> 
+                    {block:Artist}
+                    <div class="audcontent">
+                       {block:AlbumArt}<img src="{AlbumArtURL}" width="207" height="207"/>{/block:AlbumArt}
+                        {AudioPlayerBlack}
+                    </div>
+                    <p><b>Song:</b> {block:TrackName}{TrackName}{/block:TrackName}</p>
+                    <p><b>Artist:</b> {Artist}</p>
+                    
+                    <p>{block:Album}<b>Album:</b> {Album}{/block:Album}</p>
+                    {/block:Artist}
+                    {block:Caption}{Caption}{/block:Caption}
+                    </section>
+                    {/block:Audio}
+                    
+                    {block:Answer}
+                        <section class="answer">
+                            <div class="question">
+                                <img class ="qaimage"src="{AskerPortraitURL-24}">
+                                <h4>{Asker} asked: {Question}</h4>
+                                <p>{Answer}</p>
+                            </div>
+                        </section>
+                    {/block:Answer}
+                
+                    
+                    
+                    
+                    
+                    {block:Date}
+                    <footer>
+                        <ul id="notes_tags">
+                        
+                            <li class="date"><a href="{Permalink}"> <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{Month} {DayOfMonth}, {Year}</time> </a></li>
+                            
+                            <ul class="like_and_reblog_buttons">
+                                <li>{LikeButton color="grey" size="15"}</li>
+                                <li>{ReblogButton color="grey" size="15"}</li>
+                            </ul>
+                            
+                            
+                            
+                            <br>
+                            
+                            {block:Submission} 
+                                <li class="submission"><a href="{SubmitterURL}">Submission by:{Submitter}</a></li>
+                            {/block:Submission}
+                            
+                            {block:ContentSource}
+                                <li class="submission"><a href="{SourceURL}">{lang:Source}:{block:NoSourceLogo}{SourceTitle}{/block:NoSourceLogo}
+                            {/block:ContentSource}
+
+                            {block:HasTags}
+                                <li class="tags">{block:Tags}<a href="{TagURL}">{Tag}</a> {/block:Tags}</li>
+                            {/block:HasTags}
+                            
+                            {block:NoteCount}
+                                <li class="note_count"><a href="{Permalink}#notes">{NoteCountWithLabel}</a></li>
+                            {/block:NoteCount}
+                            
+                            {block:PermalinkPage} 
+                                {block:PostNotes}
+                                <div id="notes">
+                                    {PostNotes}
+                                </div>
+                                {/block:PostNotes}
+                            {/block:PermalinkPage} 
+                        </ul>
+                    </footer>
+                    {/block:Date}
+                    
+                </div>
+            {/block:Posts}
+        </article>
+        
+        
+    </div>
+
+
+</body>
+</html>

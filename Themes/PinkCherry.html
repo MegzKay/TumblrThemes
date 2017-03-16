@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {block:Description} <meta name="description" content="{MetaDescription}" /> {/block:Description}
+    <title>{block:TagPage}{Tag} - {/block:TagPage} {block:SearchPage}{lang:Search results for SearchQuery} - {/block:SearchPage}{block:PostSummary}{PostSummary} - {/block:PostSummary}{Title}</title>
+    <link rel="shortcut icon" href="{Favicon}" />
+    <link rel="alternate" type="application/rss+xml" href="{RSS}" />
+    
+    
+    <!--Bootstrap Links-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery       .min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap      .min.js"></script>
+    
+         <!--Social Media Icons: https://www.create.net/blog/43086-free-social-icons-for-your-website.html--> 
+
+
+    
+    <!--images-->
+    <meta name="image:Body" content=""/>
+
+    <!--background colors-->
+    <meta name="color:Body" content="#70234a" />
+    <meta name="color:Post" content="#dbc3d0" />
+    <meta name="color:Navigation" content="#D68EB4" />
+
+    
+     <!-- font colors-->
+    <meta name="color:Title" content="#232323" />
+    <meta name="color:Text" content="#4f4f4f" />
+    <meta name="color:Link" content="#4C4C4C" />
+    <meta name="color:Link Hover" content="#000000" />
+
+    
+    <meta name="select:Avatar Shape" content="80px" title="Round">
+    <meta name="select:Avatar Shape" content="25px" title="Rounded Square">
+    <meta name="select:Avatar Shape" content="0px" title="Square">
+    
+    <!--fonts-->
+    <meta name="select:Fonts" content="Arial" title="Arial">
+    <meta name="select:Fonts" content="Arial Black" title="Arial Black">
+    <meta name="select:Fonts" content="Book Antiqua" title="Book Antiqua">
+    <meta name="select:Fonts" content="Bookman Old Style" title="Bookman Old Style">
+    <meta name="select:Fonts" content="Century Gothic" title="Century Gothic">
+    <meta name="select:Fonts" content="Comic Sans MS" title="Comic Sans MS">
+    <meta name="select:Fonts" content="Copperplate Gothic Bold" title="Copperplate Gothic Bold">
+    <meta name="select:Fonts" content="Copperplate Gothic Light" title="Copperplate Gothic Light">
+    <meta name="select:Fonts" content="Courier New" title="Courier New">
+
+    <meta name="select:Fonts" content="Franklin Gothic Medium" title="Franklin Gothic Medium">
+    <meta name="select:Fonts" content="Franklin Gothic Book" title="Franklin Gothic Book">
+    <meta name="select:Fonts" content="French Script MT" title="French Script MT">
+    <meta name="select:Fonts" content="Garamond" title="Garamond">
+    <meta name="select:Fonts" content="Georgia" title="Georgia">
+    <meta name="select:Fonts" content="Kristen ITC" title="Kristen ITC">
+    <meta name="select:Fonts" content="Impact" title="Impact">
+    <meta name="select:Fonts" content="Lucida Console" title="Lucida Console">
+    <meta name="select:Fonts" content="Lucida Sans Unicode" title="Lucida Sans Unicode">
+    <meta name="select:Fonts" content="Tahoma" title="Tahoma">
+    <meta name="select:Fonts" content="Typewriter" title="Typewriter">
+    <meta name="select:Fonts" content="Verdana" title="Verdana">
+
+
+    <!--Social Media-->
+    <meta name="text:Facebook" content=""/>
+    <meta name="text:Twitter" content="" />
+    <meta name="text:Youtube" content="" />
+    <meta name="text:Instagram" content="" />
+    
+    <!--If -->
+    <meta name="if:Archive" content="0"/>
+    <meta name="if:FixedSidebar" content="0"/>
+     
+    
+    <style>
+        header, article, section, hgroup, nav, footer{
+            display:block;
+        }
+        *{
+            padding 0px;
+            margin:0px;
+        }
+        
+        body{
+            font-family:{select:Fonts},Georgia, serif;
+            background:{color:Body};
+            padding:30px;
+            color:{color:Text};
+            min-height:500px;
+            
+        }
+        ul {
+            list-style-type:none;
+        }
+        a{
+            text-decoration:none;
+        }
+        a:hover{
+            text-decoration:none;
+        }
+        a:link{color:{color:Link};}
+        a:visited{color:{color:Link};}
+        a:hover{color:{color:Link Hover};}
+        h1 a:link{color:{color:Title};}
+        h1 a:visited{color:{color:Title};}
+        h1 a:hover{color:{color:Title};}
+        h2 a:link{color:{color:Link};}
+        h2 a:visited{color:{color:Link};}
+        h2 a:hover{color:{color:Link};}
+        
+        /* Header */
+
+        #avatar {
+            float:left;
+            margin-left:5%;
+            margin-right:10%;
+            margin-bottom:50px;
+            border-radius:{select:Avatar Shape};
+        }
+        .jumbotron{
+            box-shadow:5px 5px 10px black;
+        }
+        .jumbotron p{
+            font-size:14px;
+        }
+        #socialMedia{
+            float:right;
+        }
+        .jumbotron ul{
+        }
+        .jumbotron li{
+            float:right;
+            margin-left:15px;
+        }
+
+
+        
+        /* Aside */
+        aside{
+            float:left;
+            width: 300px;
+            background-color:{color:post};
+            margin-top:60px;
+            border-radius:7px;
+            box-shadow:4px 4px 7px black;
+            font-size:1.4em;
+            min-height:300px;
+        }
+        {block:ifFixedSidebar}
+            aside{
+                position:fixed;
+            }
+         {block:ifFixedSidebar}
+        
+        /* Navigation */
+        aside h3{
+            text-align:center;
+            text-decoration:underline;
+        }
+        #pages{
+            
+        }
+        #pages ul{
+            text-align:center;
+            padding:5px 0;
+            
+        }
+        #pages li{
+             padding:4px;
+        }
+
+        
+        /* Main Body */
+        section{
+            width:750px;
+            float:right;
+        }
+        /* Main Post Styling */
+        article{
+            margin-top:60px;
+            padding:10px 10px 1px;
+            background-color:{color:post};
+            line-height:1.8em;
+            border-top-right-radius:7px;
+            border-top-left-radius:7px;
+            box-shadow:5px 5px 10px black;
+          
+        }
+        article blockquote {
+            border-left: solid 2px gray;
+            margin-left:20px;
+            padding-left: 5px;
+            font-style:italic;
+        }
+        article ul{
+            list-style-type:disc;
+        }
+        section article h2.title{
+            font-size:3em;
+            font-weight:bold;
+            margin-top:5px;
+        }
+        /*  Post Type Styling */
+        .chat h2{
+            padding-bottom:20px;
+        }
+        .chat ul {
+            list-style-type: none;
+            background:silver;
+            padding:20px;
+        }
+        .chat li {                
+            border-radius: 0.2em;
+            width: 200px;
+            padding:5px;
+        }
+        .chat .odd {
+            border: 1px solid rgba(1,1,1,0.2);
+            margin:1% 10% 1%;
+            background: #fff;
+            box-shadow: -1px -1px 2px #444 inset;
+        }
+        .chat .even {
+            border: 1px solid #000;
+            color:#fff;
+            margin:1% 60% 1%;
+            background: #444;
+            box-shadow: -1px -1px 2px rgba(1,1,1,0.5) inset;
+        }
+        .audio{
+            height:250px;
+            padding-bottom:7px;
+        }
+        .audio_content{
+            float:left;
+            width:30%;
+        }
+        .audio img{
+            height:200px;
+            width:207px;
+        }
+        .audio_text{
+            float:left;
+            width:60%;
+            height:100%;
+            overflow-y:scroll;
+            background:#fff;
+            padding:7px;
+            margin-left:8%;
+            border-radius:3px;
+        }
+        .question{
+            width:97%;
+            padding:10px;
+            height:auto;
+            color:#000;
+        }
+        .asker_image{
+            float:left;
+            padding-right:5px;
+        }
+        .question h4{
+            margin-bottom:15px;
+        }
+        .question p{
+                
+        }
+        .question ul{
+            margin-left:20px;
+            list-style-type: disc;
+        }
+        .question ol{
+            margin-left:25px;
+        }
+        /* Notes on Footer of Article */
+        #notes_tags{
+            width:750px;
+            background:{color:Navigation};
+            padding:3px 7px;
+            border:2px solid silver;
+            display:block;
+            font-size:16px;
+            box-shadow:5px 5px 10px black;
+            border-bottom-right-radius:7px;
+            border-bottom-left-radius:7px;
+        }
+        #notes_tags li{
+            display:inline;
+        }
+        .date{ 
+            float:left;
+        }
+        .submission, .source{
+
+            font-style:italic;
+        }
+        .like_and_reblog_buttons li{
+            float:right;
+            padding:0px 3px;
+         }
+        #notes_tags a{
+            padding:0 2px;
+        }
+        
+        /* Tumblr Notes Page */
+        ol.notes {
+            padding: 0px;
+            margin: 15px 0px;
+            list-style-type: none;
+            font-weight: normal;
+            font-size:10px;
+        }
+
+        ol.notes li.note {
+                
+        }
+
+        ol.notes li.note img.avatar {
+            vertical-align: -4px;
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+
+        ol.notes li.note span.action {
+        }
+
+        ol.notes li.note .answer_content {
+            font-weight:bold;
+        }
+        ol.notes li.note blockquote {
+            border-left: 1px solid silver;
+            font-weight:bold;
+            margin:5px 0px 10px 50px;
+        }
+
+        ol.notes li.note blockquote a {
+            text-decoration:none;
+            padding-left:2px;
+        }
+        /* Footer */
+        .pagination{
+            margin-top:30px;
+            clear:both;
+            text-align:center;
+            background:{color:post};
+            padding:10px 0;
+            width:100%;
+            box-shadow:3px 3px 8px black;
+        }
+        .pagination ul{
+            margin-right:0;
+            margin-left:0;
+            padding-right:0;
+            padding-left:0;
+        }
+        .pagination .pagination_button{
+            display:inline;
+            padding: 5px 10px;
+            margin:0 10px;
+        }
+        {CustomCSS}
+    </style>
+
+    
+
+    
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            
+            	<a href="{BlogURL}"><img id="avatar" src="{PortraitURL-128}"></a>
+                {block:Description}
+                    <h1><a href="{BlogURL}">{TITLE}</a></h1>
+                    <p>{Description}<p>
+                {/block:Description}
+                
+                
+
+            <div id="socialMedia">
+                <ul>
+                    {block:IfFacebook}
+                        <li>
+                           <a target="_blank" title="follow me on facebook" href="https://facebook.com/{text:Facebook}"><img alt="Facebook" src="https://c866088.ssl.cf3.rackcdn.com/assets/facebook30x30.png" border=0></a>
+                        </li>
+                    {/block:IfFacebook}
+                    
+                    {block:IfTwitter}
+                        <li>
+                            <a target="_blank" title="follow me on Twitter" href="https://twitter.com/{text:Twitter}"><img alt="Twitter" src="https://c866088.ssl.cf3.rackcdn.com/assets/twiiter30x30.png" border=0></a>
+                        </li>
+                    {/block:IfTwitter}
+    
+                    {block:IfInstagram}
+                        <li>
+                            <a target="_blank" title="follow me on instagram" href="https://instagram.com/{text:Instagram}"><img alt="Instagram" src="https://c866088.ssl.cf3.rackcdn.com/assets/instagram30x30.png" border=0></a>
+                        </li>
+                    {/block:IfInstagram}
+                    {block:IfYoutube}
+                        <li>
+                            <a target="_blank" title="follow me on youtube" href="https://www.youtube.com/user/{text:Youtube}"><img alt="Youtube" src="https://c866088.ssl.cf3.rackcdn.com/assets/youtube30x30.png" border=0></a>
+                        </li>
+                    {/block:IfYoutube}
+                    
+                </ul>
+             </div>
+                
+
+            
+        </div>
+        
+        
+        <aside>
+        
+
+            <nav id="pages">
+            <h3>{TITLE}</h3>
+                <ul style="padding-left:0px">
+
+                   {block:HasPages}
+                       {block:Pages}
+                            <a href="{URL}">
+                                <li>{Label}</li>
+                            </a>
+                        {/block:Pages}
+                    {/block:HasPages}
+                    
+                    {block:IfArchive}
+                            <a href="{BlogURL}archive">
+                                <li>Archive</li>
+                            </a>
+                    {block:IfArchive}
+                    
+                    {block:AskEnabled}
+                        <a class="ask_submit" href="/ask">
+                            <li>{AskLabel}</li>
+                        </a>
+                    {/block:AskEnabled}
+                            
+                    {block:SubmissionsEnabled}
+                        <a class="ask_submit" href="/submit">
+                            <li>{SubmitLabel}</li>
+                        </a>
+                    {/block:SubmissionsEnabled}
+                </ul>	
+            </nav> 
+            
+        </aside>
+        
+
+        <section>
+             {block:Posts}
+
+                    
+                    {block:Text}
+                        <article class="text">
+                            {block:Title}
+                                <h2 class="title"><a href="{Permalink}">{Title}</a></h2>
+                            {/block:Title}
+                            <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p>{Body}</p>
+                            </div>
+                            </div>
+                        </article>
+                    {/block:Text}
+
+                    
+                    {block:Photo}
+                    
+                    <article class="photo">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <a href="{Permalink}">
+                            <img src="{PhotoURL-500}" alt="{PhotoAlt}" width="100%"></a>
+                        </div>
+                    </div>
+                    {block:Caption}
+                            <div class="panel panel-default">
+                            <div class="panel-body">
+                                {Caption}
+                            </div>
+                            </div>
+                        {/block:Caption}
+      
+                    </article>
+                    {/block:Photo}
+                    
+                    
+                            
+                    {block:Panorama}
+                    <article class="panorama"> 
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {LinkOpenTag}
+                                <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
+                            {LinkCloseTag}
+                        </div>
+                    </div>
+                            
+                            {block:Caption}
+                            <div class="panel panel-default">
+                            <div class="panel-body">
+                                {Caption}
+                            </div>
+                            </div>
+                        {/block:Caption}
+                    </article>
+                    {/block:Panorama}
+                    
+                    
+                                
+                    {block:Photoset}
+                    <article class="photoset"> 
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                                {Photoset-700}
+                        </div>
+                    </div>
+                    
+                        
+                        {block:Caption}
+                            <div class="panel panel-default">
+                            <div class="panel-body">
+                                {Caption}
+                            </div>
+                            </div>
+                        {/block:Caption}
+                    </article>
+                    {/block:Photoset}
+                    
+                    
+                             
+                    {block:Quote}
+                    <article class="quote"> 
+                        <h2 class="title">"{Quote}"</h2>
+                        {block:Source}
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                            <p>- {Source}</p>
+                        </div>
+                        </div>
+                        {/block:Source}
+                    </article>
+                    {/block:Quote}
+                    
+                 
+                    
+                    {block:Link}
+                    <article class="link">
+                    <a href="{URL}" {Target}><h2 class="title">{Name}</h2></a>
+                        {block:Description}
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                            <p>{Description}</p>
+                        </div>
+                        </div>
+                        {/block:Description}
+                    </article>
+                    {/block:Link}
+                    
+                
+                    
+                    {block:Chat}
+                    <article class="chat">
+                    <div class="panel panel-default">
+                            <div class="panel-body">
+                        <h2 class="title">{Title}</h2>
+                          <ul>
+                                {block:Lines}
+                                    <li class="{Alt}">
+                                            {block:Label}
+                                                {Label}
+                                            {/block:Label}{Line}
+                                    </li>
+                                {/block:Lines}
+                            </ul>
+                            </div>
+                            </div>
+                    </article>
+                    {/block:Chat}
+
+                    
+                    
+                        
+                    {block:Video}
+                    <article class="video">  
+                        
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                    {Video-700}
+                                    
+                            </div>
+                        </div>
+                         
+                            {block:Caption}
+                            <div class="panel panel-default">
+                            <div class="panel-body">
+                                {Caption}
+                            </div>
+                            </div>
+                            {/block:Caption}
+                    </article>
+                    {/block:Video}
+                    
+                    
+                                 
+                    {block:Audio}
+                        <article class="audio"> 
+                            {block:Artist}
+                            <div class="audio_content">
+                               {block:AlbumArt}<img src="{AlbumArtURL}" width="207" height="207"/>{/block:AlbumArt}
+                                {AudioPlayerBlack}
+                            </div>
+                            
+                            <div class="audio_text">
+                                <h3><b>Song:</b> {block:TrackName}{TrackName}{/block:TrackName}</h3>
+                                <h3><b>Artist:</b> {Artist}</h3>
+                                
+                                <h3>{block:Album}<b>Album:</b> {Album}{/block:Album}</h3>
+                                {/block:Artist}
+                                {block:Caption}
+                                    {Caption}
+                                {/block:Caption}
+                            </div>
+                        </article>
+                    {/block:Audio}
+                    
+                    {block:Answer}
+                    <article class="answer">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                                <div class="question">
+                                    <img class ="asker_image"src="{AskerPortraitURL-24}">
+                                    <h4>{Asker} asked: {Question}</h4>
+                                    <p>{Answer}</p>
+                                </div>
+                        </div>
+                    </div>
+                    </article>
+                    {/block:Answer}
+
+                    
+                    {block:Date}
+
+                        <ul  id="notes_tags">
+                        
+                            <li class="date"><a href="{Permalink}"> <time datetime="{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}">{Month} {DayOfMonth}, {Year}</time> </a></li>
+                            
+                            <ul class="like_and_reblog_buttons">
+                                <li>{LikeButton color="white" size="=20"}</li>
+                                <li>{ReblogButton color="white" size="20"}</li>
+                            </ul>
+
+                            <br>
+                            
+                            {block:Submission} 
+                                <li class="submission"><a href="{SubmitterURL}">Submission by:{Submitter}</a></li>
+                            {/block:Submission}
+                            
+                            {block:ContentSource}
+                                <li class="source"><a href="{SourceURL}">{lang:Source}:{block:NoSourceLogo}{SourceTitle}{/block:NoSourceLogo}
+                            {/block:ContentSource}
+
+                            {block:HasTags}
+                                <li class="tags">{block:Tags}<a href="{TagURL}">{Tag}</a> {/block:Tags}</li>
+                            {/block:HasTags}
+                            
+                            {block:NoteCount}
+                                <li class="note_count"><a href="{Permalink}#notes">{NoteCountWithLabel}</a></li>
+                            {/block:NoteCount}
+                            
+                            {block:PermalinkPage} 
+                                {block:PostNotes}
+                                <div class="notes_page">
+                                    {PostNotes}
+                                </div>
+                                {/block:PostNotes}
+                            {/block:PermalinkPage} 
+                        </ul>
+                        
+                    
+                    {/block:Date}
+                    
+
+            {/block:Posts}
+        </section>
+
+        
+        
+        
+        <footer class="pagination">
+        
+            <ul>
+                {block:Pagination}
+
+                    {block:PreviousPage}
+                        <li class="pagination_button"><button type="button" class="btn btn-default"><a href="{PreviousPage}">Previous</a></button></li>
+                    {/block:PreviousPage}
+            
+                    {block:NextPage}
+                        <li class="pagination_button"><button type="button" class="btn btn-default"><a href="{NextPage}">Next</a></button></li>
+                    {/block:NextPage}
+                 {/block:Pagination}
+
+            </ul>
+            <ul>
+                <li><a class="theme_by" href="http://designblogworld.tumblr.com/">Theme by: DesignBlogWorld</a></li>
+            </ul>
+        </footer>
+    </div>
+
+</body>
+</html>
